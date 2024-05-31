@@ -5,17 +5,17 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/blog?serverTimezone=Asia/Seoul
     username: root
-    password: 1213
+    password: qkrdjwls1!
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create # 기존 유저테이블이 있어도 프로젝트를 실행할때마다 실행함
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      use-new-id-generator-mappings: false
+      use-new-id-generator-mappings: false # 기본 넘버링을 따라가지 않음
     show-sql: true
     properties:
-      hibernate.format_sql: true
+      hibernate.format_sql: true #sql을 정렬해서 띄워줌
   mvc:
     view:
       prefix: /WEB-INF/views/
