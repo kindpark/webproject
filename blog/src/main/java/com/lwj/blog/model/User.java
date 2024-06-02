@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,6 +26,7 @@ import lombok.NoArgsConstructor;
 @Builder
 // ORM -> java(다른언어) Object --> 테이블로 매핑해주는 기술
 @Entity // User 클래스가 MySQL에 테이블이 생성이 된다. // 이 어노테이션이 가장 가까이 있는게 좋다
+//@DynamicInsert
 public class User {
 	
 	@Id // Primary key
@@ -36,14 +39,14 @@ public class User {
 	private String userName; // 아이디
 	
 	@Column(nullable=false, length = 100) 
-	// 100은 너무 길잖아 why ? 123456 => 해쉬 (비밀번호 암호화-> 엄청길다)
+	//112312를 해싱하면 엄청 길어짐
 	private String password; // 비밀번호
 	
 	@Column(nullable=false, length = 50)
 	private String email; // 이메일
 	
-	@ColumnDefault("'user'") // 문자열인걸 알려주기 위해 ""안에 '' 를 사용한다
-	private String role; // Enum을 쓰는게 좋다. // admin, user, manager 
+	@Enumerated(EnumType.STRING) // 문자열인걸 알려주기 위해 ""안에 '' 를 사용한다
+	private RoleType role; // Enum을 쓰는게 좋다. // admin, user, manager 
 	// Enum을 쓰면 도메인설정을 가능하게 한다. admin, user, manager만 들어가게 할 수 있다.
 	
 	@CreationTimestamp // 현재시간으로 시간이 자동 입력
