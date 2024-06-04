@@ -6,3 +6,4 @@ import com.lwj.blog.model.User;
 public interface UserRepository extends JpaRepository<User, Integer>{
 	
 }
+

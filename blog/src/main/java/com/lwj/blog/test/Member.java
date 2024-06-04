@@ -28,3 +28,4 @@ public class Member {
 		this.email = email;
 	}
 }
+

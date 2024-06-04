@@ -3,11 +3,12 @@ package com.lwj.blog.test;
 import java.util.function.Supplier;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -118,4 +119,17 @@ public User detail(@PathVariable int id) {
 		
 		return null;
 	}
+	
+	@DeleteMapping("/dummy/user/{id}")
+	public String DeleteUser(@PathVariable int id) {
+		try {
+			userRepository.deleteById(id);
+		}catch(EmptyResultDataAccessException e) {
+			return "삭제에 실패했습니다.";
+		}catch(Exception e) {
+			return "error";
+		}
+		return "deleted id: "+ id;
+	}
 }
+

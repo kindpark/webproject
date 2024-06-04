@@ -57,3 +57,4 @@ public class Board {
 	@CreationTimestamp
 	private Timestamp createDate;
 }
+
